@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>HTML escape!</title>
+    <meta name="description" content="Make HTML worse!">
+    <meta name="author" content="mrwm">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- http://www.interfacebus.com/html_escape_codes.html -->
+
+    <link rel="stylesheet" href="css/styles.css">
+
+  </head>
+
+  <body>
+    <form method="POST" action="javascript:convertText(this)">
+      <fieldset>
+        <legend>HTML Esc</legend>
+        <label>Insert text:
+          <textarea
+            name="insertText"
+            placeholder="one
+two
+three 4 5"></textarea>
+        </label>
+      <label class="tooltip">
+        <span class="tooltiptext">CONVERT</span>
+        <input type="submit" name="submitBtn" value="ESCAPE">
+      </label>
+      </fieldset>
+    </form>
+
+    <form method="POST" action="javascript:copyText(this)">
+      <fieldset>
+        <legend>Output</legend>
+        <label for="outputText">Escaped text:</label>
+        <textarea
+          name="outputText" placeholder="&#111;&#110;&#101<br>&#116;&#119;&#111<br>&#116;&#104;&#114;&#101;&#101;&#32;&#52;&#32;&#53"
+          
+          onClick="this.setSelectionRange(0, this.value.length)"
+          ></textarea>
+        <label class="tooltip">
+          <span class="tooltiptext" id="copyTooltip">Copy to clipboard</span>
+          <input type="submit" value="Copy Text" onmouseout="rstTip()">
+        </label>
+      </fieldset>
+    </form>
+    <script src="js/map.js"></script>
+    <script>
+      function copyText(){
+        navigator.clipboard.writeText(this.textBoxes[1].value)
+        var tooltip = document.getElementById("copyTooltip")
+        tooltip.innerHTML = "Copied: " + this.textBoxes[1].value
+      }
+      function rstTip(){
+        var tooltip = document.getElementById("copyTooltip")
+        tooltip.innerHTML = "Copy to clipboard"
+      }
+    </script>
+  </body>
+</html>
+
+
