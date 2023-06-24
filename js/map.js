@@ -114,7 +114,10 @@ function escapeText(x){
   for (i=0; i < x.length; i++){
     lineContent[i] = htmlEscape.get(x[i])
   }
+  if (x.length > 0)
+    return lineContent.join(';') + ';'
   return lineContent.join(';')
+
 }
 
 function setText(x){
@@ -122,11 +125,15 @@ function setText(x){
   outputBox.value = x
 }
 
-function convertText(x){
+function formCapture(x){
   textInsert = x.textBoxes[0].value
+  convertText(textInsert)
+}
+
+function convertText(textInsert){
 
   // split the newlines
-  lines = textInsert.split(/\r\n|\n/);
+  lines = textInsert.value.split(/\r\n|\n/);
 
   let lineIndex=0
   while (lineIndex< lines.length){
@@ -137,12 +144,9 @@ function convertText(x){
 
 
   // recombine the split lines
-  textContent = lines.join('<br>')
+  textContent = lines.join('\n')
+  // There isn't a reliable way to escape newlines.
+  // `;&#10;&#13;` or `;&#13;&#10;` and any combo doesn't reliably work either.
 
   setText(textContent)
 }
-
-
-
-
-

@@ -14,12 +14,13 @@
   </head>
 
   <body>
-    <form method="POST" action="javascript:convertText(this)">
+    <form method="POST" action="javascript:formCapture(this)">
       <fieldset>
         <legend>HTML Esc</legend>
         <label>Insert text:
           <textarea
             name="insertText"
+            oninput="convertText(this)"
             placeholder="one
 two
 three 4 5"></textarea>
