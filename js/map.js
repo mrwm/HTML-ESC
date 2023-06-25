@@ -113,6 +113,7 @@ function escapeText(x){
   lineContent = []
   for (i=0; i < x.length; i++){
     lineContent[i] = htmlEscape.get(x[i])
+    // TODO: Add a check for unmapped characters
   }
   if (x.length > 0)
     return lineContent.join(';') + ';'
