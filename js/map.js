@@ -125,11 +125,6 @@ function setText(x){
   outputBox.value = x
 }
 
-function formCapture(x){
-  textInsert = x.textBoxes[0].value
-  convertText(textInsert)
-}
-
 function convertText(textInsert){
 
   // split the newlines

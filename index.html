@@ -14,7 +14,7 @@
   </head>
 
   <body>
-    <form method="POST" action="javascript:formCapture(this)">
+    <form>
       <fieldset>
         <legend>HTML Esc</legend>
         <label>Insert text:
@@ -25,38 +25,61 @@
 two
 three 4 5"></textarea>
         </label>
-      <label class="tooltip">
-        <span class="tooltiptext">CONVERT</span>
-        <input type="submit" name="submitBtn" value="ESCAPE">
-      </label>
+      </fieldset>
+    </form>
+    <form class="arrow">
+      <fieldset><h1>&#8595;</h1>
+      </fieldset>
+    </form>
+    <form>
+      <fieldset>
+        <legend>Output</legend>
+        <label for="outputText"
+          onClick="copyText()"
+                >Escaped text:
+          <textarea
+            name="outputText"
+            placeholder="&​#111;&​#110;&​#101
+&​#116;&​#119;&​#111
+&​#116;&​#104;&​#114;&​#101;&​#101;&​#32;&​#52;&​#32;&​#53"
+
+            onClick="this.setSelectionRange(0, this.value.length)"
+            ></textarea>
+          </label>
       </fieldset>
     </form>
 
-    <form method="POST" action="javascript:copyText(this)">
+    <form method="POST" action="">
       <fieldset>
-        <legend>Output</legend>
-        <label for="outputText">Escaped text:</label>
-        <textarea
-          name="outputText" placeholder="&#111;&#110;&#101<br>&#116;&#119;&#111<br>&#116;&#104;&#114;&#101;&#101;&#32;&#52;&#32;&#53"
-          
-          onClick="this.setSelectionRange(0, this.value.length)"
-          ></textarea>
-        <label class="tooltip">
-          <span class="tooltiptext" id="copyTooltip">Copy to clipboard</span>
-          <input type="submit" value="Copy Text" onmouseout="rstTip()">
-        </label>
+        <legend>Demo</legend>
+        <label for="demoText" class="demo">Paste escaped text:
+          <textarea
+            name="demoText"
+            placeholder="&​#111;&​#110;&​#101
+&​#116;&​#119;&​#111
+&​#116;&​#104;&​#114;&​#101;&​#101;&​#32;&​#52;&​#32;&​#53"
+            oninput="unEscape(this.value)"
+            ></textarea>
+          </label>
+        <label for="renderText" class="demo">Rendered text:
+          <div>one<br>two<br>three 4 5</div>
+          </label>
       </fieldset>
     </form>
     <script src="js/map.js"></script>
     <script>
       function copyText(){
         navigator.clipboard.writeText(this.textBoxes[1].value)
-        var tooltip = document.getElementById("copyTooltip")
-        tooltip.innerHTML = "Copied: " + this.textBoxes[1].value
       }
-      function rstTip(){
-        var tooltip = document.getElementById("copyTooltip")
-        tooltip.innerHTML = "Copy to clipboard"
+      function unEscape(x){
+        let renderText = document.getElementsByTagName("div")[0]
+        renderText.style.color = "black"
+        renderText.innerHTML = x
+        if (x.length < 1){
+          renderText.style.color = "#ccccccee"
+          placeholder="one<br>two<br>three 4 5"
+          renderText.innerHTML = placeholder
+        }
       }
     </script>
   </body>
