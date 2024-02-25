@@ -50,7 +50,7 @@ three 4 5"></textarea>
     <form method="POST" action="">
       <fieldset>
         <legend>Demo</legend>
-        <label for="demoText" class="demo">Paste escaped text:
+        <label for="demoText">Paste escaped text:
           <textarea
             name="demoText"
             placeholder="&​#111;&​#110;&​#101
@@ -64,7 +64,29 @@ three 4 5"></textarea>
           </label>
       </fieldset>
     </form>
+
+    <form method="POST" action="">
+      <fieldset>
+        <legend>Encode URL</legend>
+        <label for="URLText">Paste URL:
+          <textarea
+            name="urlText"
+            placeholder="https://example.com"
+            oninput="convertURL(this)"
+            ></textarea>
+          </label>
+        <label for="renderURLText" class="demo">Rendered text:
+          <textarea
+            name="renderURLText"
+            placeholder="https://example.com"
+            onclick="this.setSelectionRange(0, this.value.length)"
+            ></textarea>
+          </label>
+      </fieldset>
+    </form>
+
     <script src="js/map.js"></script>
+    <script src="js/url.js"></script>
     <script>
       function unEscape(x){
         let renderText = document.getElementsByTagName("div")[0]
