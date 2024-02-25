@@ -110,15 +110,17 @@ htmlEscape.set(' ', '&#127')
 //console.info(htmlEscape.get('a'))
 
 function escapeText(x){
-  lineContent = []
+  lineContent = ""
   for (i=0; i < x.length; i++){
-    lineContent[i] = htmlEscape.get(x[i])
-    // TODO: Add a check for unmapped characters
+    if (htmlEscape.get(x[i]) == null){
+      lineContent += x[i]
+    }
+    else{
+      lineContent += htmlEscape.get(x[i]) + ';'
+    }
   }
-  if (x.length > 0)
-    return lineContent.join(';') + ';'
-  return lineContent.join(';')
-
+  // I guess semicolons (;) after each escape code aren't needed?
+  return lineContent
 }
 
 function setText(x){
@@ -131,8 +133,8 @@ function convertText(textInsert){
   // split the newlines
   lines = textInsert.value.split(/\r\n|\n/);
 
-  let lineIndex=0
-  while (lineIndex< lines.length){
+  let lineIndex = 0
+  while (lineIndex < lines.length){
     lines[lineIndex] = escapeText(lines[lineIndex])
 
     lineIndex++

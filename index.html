@@ -35,14 +35,12 @@ three 4 5"></textarea>
       <fieldset>
         <legend>Output</legend>
         <label for="outputText"
-          onClick="copyText()"
                 >Escaped text:
           <textarea
             name="outputText"
             placeholder="&​#111;&​#110;&​#101
 &​#116;&​#119;&​#111
 &​#116;&​#104;&​#114;&​#101;&​#101;&​#32;&​#52;&​#32;&​#53"
-
             onClick="this.setSelectionRange(0, this.value.length)"
             ></textarea>
           </label>
@@ -62,15 +60,12 @@ three 4 5"></textarea>
             ></textarea>
           </label>
         <label for="renderText" class="demo">Rendered text:
-          <div>one<br>two<br>three 4 5</div>
+          <div name="renderText">one<br>two<br>three 4 5</div>
           </label>
       </fieldset>
     </form>
     <script src="js/map.js"></script>
     <script>
-      function copyText(){
-        navigator.clipboard.writeText(this.textBoxes[1].value)
-      }
       function unEscape(x){
         let renderText = document.getElementsByTagName("div")[0]
         renderText.style.color = "black"
