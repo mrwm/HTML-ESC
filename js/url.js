@@ -101,7 +101,8 @@ function escapeURL(URL){
     URL_prefix += "//"
   }
   let x = URL
-  for (i=0; i < URL_afterPrefix.length; i++){
+  lineContent += URL_afterPrefix[0] // skip first char
+  for (i=1; i < URL_afterPrefix.length - 1; i++){
     if (urlEncode.get(URL_afterPrefix[i]) == null){
       lineContent += encodeURIComponent(URL_afterPrefix[i])
     }
@@ -109,6 +110,7 @@ function escapeURL(URL){
       lineContent += urlEncode.get(URL_afterPrefix[i])
     }
   }
+  lineContent += URL_afterPrefix[URL_afterPrefix.length - 1] // skip last char
   // prefixes needs to be included if they are included.
   // Things like https:// , smb:// , ftp:// , and such
   if (has_prefix){
