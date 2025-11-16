@@ -3,12 +3,7 @@ var textBoxes = document.querySelectorAll('textarea')
 function escapeText(x){
   lineContent = ""
   for (i=0; i < x.length; i++){
-    if (htmlEscape.get(x[i]) == null){
-      lineContent += x[i]
-    }
-    else{
-      lineContent += "&#" + x[i].charCodeAt(0) + ';'
-    }
+    lineContent += "&#" + x[i].charCodeAt(0) + ';'
   }
   // I guess semicolons (;) after each escape code aren't needed?
   return lineContent
